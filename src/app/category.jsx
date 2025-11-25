@@ -1,4 +1,4 @@
-import Image from "next/image";
+// category.js
 import Item from "./item";
 
 export default function Category({title, img, items}){

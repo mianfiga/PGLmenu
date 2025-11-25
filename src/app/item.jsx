@@ -1,4 +1,4 @@
-import Image from "next/image";
+// item.js
 
 export default function Item({title, price}){
     return (
