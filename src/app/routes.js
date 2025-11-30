@@ -1,7 +1,7 @@
 const routes = {
   categories: {
     url: "https://jlorenzo.ddns.net/carta_restaurante/categorias/:id?",
-    params: { usuario_id: 1 }, // defautl params for this action
+    params: { usuario_id: 1 }, // default params for this action
     get: {
       url: "https://jlorenzo.ddns.net/carta_restaurante/categorias/:id?/",
     },

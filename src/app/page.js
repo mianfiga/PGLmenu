@@ -2,7 +2,6 @@
 
 "use client";
 import { useState } from "react";
-import Category from "./category";
 import { ResourceProvider } from "./contexts/resource";
 import routes from "./routes";
 import CategoryList from "./components/categoryList";
@@ -30,15 +29,9 @@ const menuConst = {
     },
   ],
 };
-const newCategory = {
-  title: "",
-  img: "",
-  items: [],
-};
-//const menuLS = JSON.parse(localStorage.getItem('menu'));
 
 export default function Home() {
-  const [menu, setMenu] = useState(/*menuLS ||*/ menuConst);
+  const [menu, setMenu] = useState(menuConst);
   const [editMode, setEditMode] = useState(false);
   const resetMenu = () => {
     localStorage.setItem("menu", JSON.stringify(menuConst));
