@@ -3,6 +3,9 @@
 "use client";
 import { useState } from "react";
 import Category from "./category";
+import { ResourceProvider } from "./contexts/resource";
+import routes from "./routes";
+import CategoryList from "./components/categoryList";
 
 const menuConst = {
   title: "Camper Cafe",
@@ -42,32 +45,6 @@ export default function Home() {
     setMenu(menuConst);
   };
 
-  const setCategory = (id) => (category) => {
-    const newCategories = [...menu.categories];
-    newCategories[id] = category;
-
-    setMenu({
-      ...menu,
-      categories: newCategories,
-    });
-  };
-
-  const removeCategory = (id) => () => {
-    if (
-      !window.confirm(
-        "¿Está seguro de eliminar la categoría y todos sus items?"
-      )
-    ) {
-      return;
-    }
-    const newCategories = [...menu.categories];
-    newCategories.splice(id, 1);
-    setMenu({
-      ...menu,
-      categories: newCategories,
-    });
-  };
-
   return (
     <div className="root">
       <button onClick={() => setEditMode(!editMode)}>
@@ -80,17 +57,9 @@ export default function Home() {
           <h1>{menu.title}</h1>
           <p className="subtitle">{menu.subtitle}</p>
         </div>
-        {(editMode ? [...menu.categories, newCategory] : menu.categories).map(
-          (c, id) => (
-            <Category
-              key={id}
-              {...c}
-              editMode={editMode}
-              setCategory={setCategory(id)}
-              removeCategory={removeCategory(id)}
-            />
-          )
-        )}
+        <ResourceProvider routes={routes}>
+          <CategoryList editMode={editMode} />
+        </ResourceProvider>
         <div className="separator" />
         <div className="footer">
           <a href="#">Visit our website</a>
